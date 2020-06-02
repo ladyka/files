@@ -5,3 +5,5 @@ spring:
 application:
   target: /ladyka/files/data
   site: http://files.ladyka.by
+server:
+  port: 28001
