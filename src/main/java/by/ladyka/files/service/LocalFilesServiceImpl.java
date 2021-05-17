@@ -3,6 +3,7 @@ package by.ladyka.files.service;
 import by.ladyka.files.config.AppConfig;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.fileupload.FileItemIterator;
 import org.apache.tomcat.util.http.fileupload.FileItemStream;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
@@ -19,7 +20,7 @@ import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
-
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class LocalFilesServiceImpl implements FilesService {
@@ -52,6 +53,8 @@ public class LocalFilesServiceImpl implements FilesService {
                     outFileName = appConfig.getSite() + outFileName.substring(appConfig.getTarget().length());
                     filenames.add(outFileName);
                 }
+            } catch (Exception ex) {
+                log.error("FILE STORE ERROR", ex);
             }
         }
         return filenames;
